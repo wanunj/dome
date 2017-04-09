@@ -19,7 +19,7 @@ require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，�
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>多用户留言系统</title>
+    <title>多用户留言系统--首页</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="style/1/basic.css">
     <link rel="stylesheet" type="text/css" href="style/1/index.css">

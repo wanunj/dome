@@ -1,13 +1,14 @@
 *{
     padding: 0;
     margin: 0;
-    font-size: 14px;
     list-style: none;
+    text-decoration: none;
 }
 body{
     width: 960px;
     margin: 0 auto;
     background: #fff;
+    font-size: 14px;
 }
 h2{
     background: #eee;
@@ -41,6 +42,13 @@ h2{
 #header ul li{
     display: inline;
     padding: 0 3px;
+}
+#header ul li a{
+    color: #333;
+}
+#header ul li a:hover{
+    color: #f00;
+    text-decoration: underline;
 }
 #footer{
     width: 960px;

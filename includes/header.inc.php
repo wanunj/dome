@@ -16,8 +16,8 @@ if(!defined('IN_TG')){
 <div id="header">
   <h1><a href="index.html">瓢城Web俱乐部多用户留言系统</a></h1>
     <ul>
-        <li>首页</li>
-        <li>注册</li>
+        <li><a href="index.php">首页</a></li>
+        <li><a href="register.php">注册</a></li>
         <li>登陆</li>
         <li>个人中心</li>
         <li>风格</li>
