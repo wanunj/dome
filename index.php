@@ -12,7 +12,7 @@
 define('IN_TG',true);
 
 //引入公共文件
-require dirname(__FILE__).'/includes/common.inc.php';
+require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
 </head>
 <body>
 <?php
-    require './includes/header.inc.php';
+    require ROOT_PATH.'includes/header.inc.php';
 ?>
     <div id="list">
         <h2>帖子列表</h2>
@@ -38,7 +38,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
         <h2>最新图片</h2>
     </div>
 <?php
-    require './includes/footer.inc.php';
+    require ROOT_PATH.'includes/footer.inc.php';
 ?>
 </body>
 </html>
