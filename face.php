@@ -18,6 +18,7 @@ define('IN_TG',true);
 require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,19 +27,20 @@ require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，�
 <?php
     require ROOT_PATH.'includes/title.inc.php';
 ?>
+<script type="text/javascript" src="js/opener.js"></script>
 </head>
 <body>
     <div id="face">
         <h3>选择头像</h3>
         <dl>
             <?php foreach(range(1,9) as $num) {?>
-            <dd><img src="face/m0<?php echo $num?>.gif" alt="头像<?php echo $num?>"></dd>
+            <dd><img src="face/m0<?php echo $num?>.gif" alt="face/m0<?php echo $num?>.gif" title="头像<?php echo $num?>"></dd>
             <?php }?>
 
         </dl>
         <dl>
             <?php foreach(range(10,64) as $num) {?>
-            <dd><img src="face/m<?php echo $num?>.gif" alt="头像<?php echo $num?>"></dd>
+            <dd><img src="face/m<?php echo $num?>.gif" alt="face/m<?php echo $num?>.gif" title="头像<?php echo $num?>"></dd>
             <?php }?>
             
         </dl>

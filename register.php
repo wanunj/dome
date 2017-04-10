@@ -27,6 +27,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
     require ROOT_PATH.'includes/title.inc.php';
 ?>
 <script type="text/javascript" src="js/face.js"></script>
+
 </head>
 <body>
 
@@ -36,7 +37,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
 
 <div id="register">
     <h2>会员注册</h2>
-    <form action="post.php" method="post">
+    <form action="post.php" name="register" method="post">
         <dl>
             <dt>请认真填写以下内容</dt>
             <dd>用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input type="text" name="username" class="text">(*必填，至少两位)</dd>
@@ -45,7 +46,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
             <dd>密码提示：<input type="text" name="passt" class="text">(*必填，至少两位)</dd>
             <dd>密码回答：<input type="text" name="passd" class="text">(*必填，至少两位)</dd>
             <dd>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="radio" name="sex" value="男" checked="checked">男<input type="radio" name="sex" value="女">女</dd>
-            <dd class="face"><img src="face/m01.gif" alt="头像选择" id="faceimg"></dd>
+            <dd class="face"><input type="hidden" name="face" value="face/m01.gif"><img src="face/m01.gif" alt="头像选择" id="faceimg"></dd>
             <dd>电子邮件：<input type="text" name="email" class="text"></dd>
             <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q &nbsp;&nbsp;Q：<input type="text" name="qq" class="text"></dd>
             <dd>主页地址：<input type="text" name="url" class="text" value="http://"></dd>

@@ -12,6 +12,10 @@
 if(!defined('IN_TG')){
     exit('Access Defined!');
 }
+// 防止非HTML页面调用
+if(!defined('SCRIPT')){
+    exit('Script Error!');
+}
 
 ?>
 <link rel="shortcut icon" href="favicon.ico">
