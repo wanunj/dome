@@ -50,7 +50,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
             <dd>电子邮件：<input type="text" name="email" class="text"></dd>
             <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q &nbsp;&nbsp;Q：<input type="text" name="qq" class="text"></dd>
             <dd>主页地址：<input type="text" name="url" class="text" value="http://"></dd>
-            <dd>验&nbsp;&nbsp;证&nbsp;&nbsp;码：<input type="text" name="yzm" class="text yzm"></dd>
+            <dd>验&nbsp;&nbsp;证&nbsp;&nbsp;码：<input type="text" name="yzm" class="text yzm"><img src="code.php" /></dd>
             <dd><input type="submit" class="submit" value="注册"></dd>
         </dl>
     </form>

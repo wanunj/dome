@@ -9,7 +9,6 @@ window.onload=function(){
 }
 function _opener(src){
     // opener表示父窗口
-    var faceimg=opener.document.getElementById('faceimg');
-    faceimg.src=src;
+    faceimg=opener.document.getElementById('faceimg').src=src;
     opener.document.register.face.value=src;
 }
