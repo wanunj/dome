@@ -73,6 +73,12 @@ function _code($_width=75,$_height=25,$_rnd_color=4,$_flag=false){
     imagedestroy($_img);
 }
 
+/**
+*_alert_back()表示JS弹窗
+*@access public
+*@param $_info
+*@return void 弹窗
+*/
 function _alert_back($_info){
     echo "<script type='text/javascript'>alert('".$_info."');history.back();</script>";
     exit();
