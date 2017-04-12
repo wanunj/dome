@@ -19,4 +19,8 @@ session_start();
 // 长 宽 位数 边框
 _code();
 
+
+
+
+
 ?>

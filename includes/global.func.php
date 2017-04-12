@@ -67,11 +67,15 @@ function _code($_width=75,$_height=25,$_rnd_color=4,$_flag=false){
     // 	imagestring($_img,5,$i*$_width/$_rnd_code+mt_rand(1,10),mt_rand(1,$_height/2),$_SESSION['code'][$i],$_rnd_color);
     // }
     //输出图像
-    ob_clean();
     header('Content-Type:image/png');
     imagePng($_img);
     //销毁
     imagedestroy($_img);
+}
+
+function _alert_back($_info){
+    echo "<script type='text/javascript'>alert('".$_info."');history.back();</script>";
+    exit();
 }
 
 

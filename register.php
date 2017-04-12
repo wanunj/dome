@@ -8,8 +8,11 @@
 * Author: Lee
 * Date: 2017-4-9
 */
+session_start();
 // 定义常量，用来指定本页内容
 define('SCRIPT','register');
+//设置字符编码
+header('Content-Type:text/html;charset=utf-8');
 
 // 定义常量，用来授权调用includes里面的文件
 define('IN_TG',true);
@@ -17,6 +20,18 @@ define('IN_TG',true);
 //引入公共文件
 require dirname(__FILE__).'/includes/common.inc.php';
 
+//判断是否提交了
+if(isset($_GET['action'])=='register'){
+    //防止恶意注册,!我测试的
+    if(!($_POST['yzm']!==$_SESSION['code'])){
+        _alert_back('验证码错误!');
+    }
+    //创建一个空数组，用来存放提交过来的合法数据
+    $_clean=array();
+    $_clean['username']=$_POST['username'];
+    $_clean['password']=$_POST['password'];
+    print_r($_clean);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +52,7 @@ require dirname(__FILE__).'/includes/common.inc.php';
 
 <div id="register">
     <h2>会员注册</h2>
-    <form action="post.php" name="register" method="post">
+    <form action="register.php?action=register" name="register" method="post">
         <dl>
             <dt>请认真填写以下内容</dt>
             <dd>用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input type="text" name="username" class="text"> (*必填，至少两位)</dd>
