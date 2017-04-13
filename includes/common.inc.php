@@ -16,6 +16,9 @@ if(!defined('IN_TG')){
 //转换成硬路径常量
 define('ROOT_PATH',substr(dirname(__FILE__),0,-8));
 
+//创建一个自动转义的常量  mysql 扩展的版本可以使用 mysql_get_client_info() 函数获得
+define('GPC',mysql_get_client_info());
+
 //拒绝PHP低版本
 if(PHP_VERSION<'4.1.0'){
     exit('Version is to Low!');

@@ -84,8 +84,40 @@ function _alert_back($_info){
     exit();
 }
 
+/**
+ *_check_code()
+ *@access public
+ *@param $_first_code
+ *@param $_end_code
+ *@return void 验证码
+ */
+function _check_code($_first_code,$_end_code){
+    if ($_first_code!=$_end_code){
+        _alert_back('验证码错误!');
+    }
+}
 
+/**
+ *_mysql_string()
+ *@access public
+ *@param string $_string
+ *@return string $_string  返回转义字段
+ */
+function _mysql_string($_string){
+    //get_magic_quotes_gpc() 如果开启状态，那么就不需要转义
+    if (!GPC){
+        return mysql_real_escape_string($_string);
+    }
+    return $_string;
+}
 
+/**
+ * @param $_string
+ * @return string
+ */
+function _sha1_uniqid(){
+    return _mysql_string(sha1(uniqid(rand(),true)));
+}
  
 
 
