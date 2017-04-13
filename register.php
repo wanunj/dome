@@ -34,6 +34,11 @@ if(isset($_GET['action'])=='register'){
     $_clean['password']=_check_password($_POST['password'],$_POST['notpassword'],6);
     $_clean['question']=_check_question($_POST['question'],4,20);
     $_clean['answer']=_check_answer($_POST['question'],$_POST['answer'],4,20);
+    $_clean['sex']=$_POST['sex'];
+    $_clean['face']=$_POST['face'];
+    $_clean['email']=_check_email($_POST['email']);
+    $_clean['qq']=_check_qq($_POST['qq']);
+    $_clean['url']=_check_url($_POST['url']);
     print_r($_clean);
 }
 ?>

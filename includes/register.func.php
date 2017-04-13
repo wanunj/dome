@@ -18,7 +18,7 @@ if(!function_exists('_alert_back')){
 }
 
 /**
-*_check_username  
+*_check_username()
 *@access public
 *@param string $_string  受污污染的用户名
 *@param int $_min_num  最小位数
@@ -56,13 +56,14 @@ function _check_username($_string,$_min_num,$_max_num){
 }
 
 /**
-*_check_password  验证密码
-*@access public
-*@param string $_first_pass
-*@param string $_end_pass
-*@param int $_min_num
-*return string $_first_pass  返回一个加密后的密码
-*/
+ *_check_password()  验证密码
+ * @access public
+ * @param string $_first_pass
+ * @param string $_end_pass
+ * @param int $_min_num
+ * @return string $_first_pass  返回一个加密后的密码
+ * @return string
+ */
 function _check_password($_first_pass,$_end_pass,$_min_num){
     // 判断密码
     if(strlen($_first_pass)<$_min_num){
@@ -77,12 +78,12 @@ function _check_password($_first_pass,$_end_pass,$_min_num){
 }
 
 /**
-*_check_question  返回密码提示
+*_check_question()  返回密码提示
 *@access public
 *@param string $_string
 *@param int $_min_num
 *@param int $_max_num
-*return string $_first_pass  返回密码提示
+*@return string $_first_pass  返回密码提示
 */
 function _check_question($_string,$_min_num,$_max_num){
     // 长度小于4位或者大于20位
@@ -94,7 +95,15 @@ function _check_question($_string,$_min_num,$_max_num){
     return $_string;
 }
 
-
+/**
+ *_check_answer()  返回密碼回答
+ *@access public
+ *@param string $_ques
+ *@param string $_answ
+ *@param int $_min_num
+ *@param int $_max_num
+ *@return string $_answ  返回密碼回答
+ */
 function _check_answer($_ques,$_answ,$_min_num,$_max_num){
     // 长度小于4位或者大于20位
     if(mb_strlen($_answ,'utf-8')<$_min_num||mb_strlen($_answ,'utf-8')>$_max_num){
@@ -107,6 +116,78 @@ function _check_answer($_ques,$_answ,$_min_num,$_max_num){
     // 加密返回回答
     return sha1($_answ);
 }
+
+/**
+ *_check_email()  检查邮箱是否合法
+ * @access public
+ * @param string $_string 提交的邮箱地址
+ * @return string $_string 验证后的邮箱
+ */
+function _check_email($_string){
+    if (empty($_string)){
+        return null;
+    }else{
+        //邮箱验证
+        if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/',$_string)){
+            _alert_back('邮件格式不正确!');
+        }
+    }
+    return $_string;
+}
+
+/**
+ *_check_qq() QQ验证
+ * @access public
+ * @param int $_string
+ * @return string $_string  验证后QQ号码
+ */
+function _check_qq($_string){
+    if (empty($_string)){
+        return null;
+    }else{
+        if (!preg_match('/^[1-9]{1}[0-9]{4,9}$/',$_string)){
+            _alert_back('QQ号码不正确!');
+        }
+    }
+    return $_string;
+}
+
+/**
+ *_check_url()  网址验证
+ * @access public
+ * @param string $_string
+ * @return string $_string  返回过滤后的网址
+ */
+function _check_url($_string){
+    if (empty($_string)||($_string=='http://')){
+        return null;
+    }else{
+        if (!preg_match('/^https?:\/\/(\w+\.)?[\w\-\.]+(\.\w+)+$/',$_string)){
+            _alert_back('网址不正确!');
+        }
+    }
+    return $_string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
