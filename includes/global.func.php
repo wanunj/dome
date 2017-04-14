@@ -85,6 +85,15 @@ function _alert_back($_info){
 }
 
 /**
+ * @param $_info
+ * @param $_url
+ */
+function _location($_info, $_url){
+    echo "<script type='text/javascript'>alert('".$_info."');location.href='$_url';</script>";
+    exit();
+}
+
+/**
  *_check_code()
  *@access public
  *@param $_first_code
@@ -112,12 +121,12 @@ function _mysql_string($_string){
 }
 
 /**
- * @param $_string
  * @return string
  */
 function _sha1_uniqid(){
     return _mysql_string(sha1(uniqid(rand(),true)));
 }
+
  
 
 
