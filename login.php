@@ -20,7 +20,25 @@ require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，�
 
 //开始处理登录状态
 if ($_GET['action']=='login'){
-    exit('123456');
+    //防止恶意注册,!我测试的
+    _check_code(isset($_POST['code']),isset($_SESSION['code']));
+    // 引入验证文件
+    include ROOT_PATH.'includes/login.func.php';
+    //接受数据
+    $_clean=array();
+    $_clean['username']=_check_username($_POST['username'],2,20);
+    $_clean['password']=_check_password($_POST['password'],6);
+    $_clean['time']=_check_time($_POST['time']);
+    //在数据库验证
+    if (!!$_rows = _fetch_array("SELECT tg_username,tg_uniqid FROM tg_user WHERE tg_username='{$_clean['username']}' and tg_password='{$_clean['password']}' and tg_active='' LIMIT 1")) {
+        _close();
+        _session_destroy();
+        _location(null,'index.php');
+    }else{
+        _close();
+        _session_destroy();
+        _location('用户名密码不正确或者该账户未被激活！','login.php');
+    }
 }
 
 ?>

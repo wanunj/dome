@@ -89,8 +89,13 @@ function _alert_back($_info){
  * @param $_url
  */
 function _location($_info, $_url){
-    echo "<script type='text/javascript'>alert('".$_info."');location.href='$_url';</script>";
-    exit();
+    if (empty(!$_info)){
+        echo "<script type='text/javascript'>alert('".$_info."');location.href='$_url';</script>";
+        exit();
+    }else{
+        header('Location:'.$_url);
+    }
+
 }
 
 /**
@@ -125,6 +130,13 @@ function _mysql_string($_string){
  */
 function _sha1_uniqid(){
     return _mysql_string(sha1(uniqid(rand(),true)));
+}
+
+/**
+ *_session_destroy()清除
+ */
+function _session_destroy(){
+    session_destroy();
 }
 
  
