@@ -1,0 +1,47 @@
+
+#login{
+    width: auto;
+    height: 400px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+#login h2{
+    text-indent: 0;
+    text-align: center;
+}
+#login dl{
+    width: 300px;
+    margin: 30px auto 0 auto;
+}
+#login dl dt{
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+}
+#login dl dd{
+    margin: 10px 0;
+}
+#login dl dd .text{
+    width: 200px;
+    height: 19px;
+    border: 1px solid #888;
+    background: #fff;
+}
+#login dl dd .code{
+    width: 60px;
+}
+#code{
+    position: relative;
+    left: 4px;
+    top: 5px;
+    cursor: pointer;
+}
+#login dl dd .button{
+    width: 60px;
+    height: 24px;
+    background: #bbb;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0 0 60px;
+    border-radius: 4px;
+}
