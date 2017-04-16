@@ -69,6 +69,14 @@ function _fetch_array($_sql){
 }
 
 /**
+ * _affected_rows()表示影响到的记录数
+ * @return int
+ */
+function _affected_rows(){
+    return mysql_affected_rows();
+}
+
+/**
  * @param $_sql
  * @param $_info
  */
