@@ -160,9 +160,6 @@ function _check_face($_string){
  * @return string $_string 验证后的邮箱
  */
 function _check_email($_string,$_min_num,$_max_num){
-    if (empty($_string)){
-        return null;
-    }else{
         //邮箱验证
         if(!preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/',$_string)){
             _alert_back('邮件格式不正确!');
@@ -170,7 +167,6 @@ function _check_email($_string,$_min_num,$_max_num){
         if (strlen($_string)<$_min_num||strlen($_string)>$_max_num){
             _alert_back('邮件长度不合法!');
         }
-    }
     return _mysql_string($_string);
 }
 
