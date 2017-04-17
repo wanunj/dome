@@ -61,11 +61,21 @@ function _query($_sql){
 }
 
 /**
+ * _fetch_array()  只能获取指定数据集的一条数据组
  * @param $_sql
  * @return array
  */
 function _fetch_array($_sql){
     return mysql_fetch_array(_query($_sql),MYSQL_ASSOC);
+}
+
+/**
+ * _fetch_array_list() 可以返回指定数据集的所有数据
+ * @param $_result
+ * @return array
+ */
+function _fetch_array_list($_result){
+    return mysql_fetch_array($_result,MYSQL_ASSOC);
 }
 
 /**

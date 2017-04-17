@@ -18,6 +18,9 @@ define('IN_TG',true);
 //引入公共文件
 require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
+//从数据库提取数据获取结果集
+$_result=_query("SELECT tg_username,tg_sex,tg_face FROM tg_user ORDER BY tg_reg_time DESC");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,16 +38,16 @@ require ROOT_PATH.'includes/header.inc.php';
 
 <div id="blog">
     <h2>博友列表</h2>
-    <?php for ($i=10;$i<30;$i++) { ?>
+    <?php while (!!$_rows=_fetch_array_list($_result)){?>
     <dl>
-        <dd class="user">哈哈</dd>
-        <dt><img src="face/m<?php echo $i?>.gif" alt="哈哈"></dt>
+        <dd class="user"><?php echo $_rows['tg_username']?>(<?php echo $_rows['tg_sex']?>)</dd>
+        <dt><img src="<?php echo $_rows['tg_face']?>" alt="哈哈"></dt>
         <dd class="message">发消息</dd>
         <dd class="friend">加为好友</dd>
         <dd class="guest">写留言</dd>
         <dd class="flower">给她送花</dd>
     </dl>
-    <?php } ?>
+    <?php }?>
 </div>
 
 
