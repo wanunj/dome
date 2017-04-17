@@ -3,7 +3,6 @@
  */
 window.onload=function () {
     code();
-
     //登录验证
     var fm=document.getElementsByTagName('form')[0];
     fm.onsubmit=function () {                           //onsubmit点击提交

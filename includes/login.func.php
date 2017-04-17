@@ -75,6 +75,35 @@ function _check_time($_string){
 }
 
 
+/**
+ * _setcookies()生成登录cookie
+ * @param $_username
+ * @param $_uniqid
+ */
+function _setcookies($_username, $_uniqid,$_time){
+    setcookie('username',$_username);
+    setcookie('uniqid',$_uniqid);
+    switch ($_time){
+        case '0':       //浏览器进程
+            setcookie('username',$_username);
+            setcookie('uniqid',$_uniqid);
+            break;
+        case '1':       //一天
+            setcookie('username',$_username,time()+68400);
+            setcookie('uniqid',$_uniqid,time()+68400);
+            break;
+        case '2':       //一周
+            setcookie('username',$_username,time()+608800);
+            setcookie('uniqid',$_uniqid,time()+608800);
+            break;
+        case '3':       //一月
+            setcookie('username',$_username,time()+2592000);
+            setcookie('uniqid',$_uniqid,time()+2592000);
+            break;
+    }
+}
+
+
 
 
 

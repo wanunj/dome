@@ -133,13 +133,31 @@ function _sha1_uniqid(){
 }
 
 /**
- *_session_destroy()清除
+ *_session_destroy() 清除session
  */
 function _session_destroy(){
     session_destroy();
 }
 
- 
+/**
+ *_unsetcookies() 清空cookie
+ */
+function _unsetcookies(){
+    setcookie('username','',time()-1);
+    setcookie('uniqid','',time()-1);
+    _session_destroy();
+    _location(null,'index.php');
+ }
+
+/**
+ *_login_state()  登录状态的判断
+ */
+function _login_state(){
+    if ($_COOKIE['username']){
+        _alert_back('登录状态无法进行本操作');
+    }
+ }
+
 
 
 
