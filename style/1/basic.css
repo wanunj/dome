@@ -50,6 +50,35 @@ h2{
     color: #f00;
     text-decoration: underline;
 }
+#page_num{
+    height: 20px;
+    clear: both;
+    padding: 10px 0;
+    position: relative;
+}
+#page_num ul{
+    position: absolute;
+    right: 30px;
+    height: 20px;
+}
+#page_num ul li{
+    float: left;
+    width: 28px;
+    height: 20px;
+}
+#page_num ul li a{
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #333;
+    text-align: center;
+}
+#page_num ul li a:hover,#page_num ul li a.selected{
+    background: #666;
+    font-weight: bold;
+    color: #ffffff;
+}
 #footer{
     width: 960px;
     height: 40px;

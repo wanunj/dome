@@ -18,8 +18,15 @@ define('IN_TG',true);
 //引入公共文件
 require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
+//分页模块
+$_page = $_GET['page'];
+$_pagesize = 10;
+$_pagenum = ($_page - 1) * $_pagesize;
+//首页要得到所有的数据总和
+$_num=mysql_num_rows(_query("SELECT tg_id FROM tg_user"));
+$_pagheabsolute=ceil($_num/$_pagesize);
 //从数据库提取数据获取结果集
-$_result=_query("SELECT tg_username,tg_sex,tg_face FROM tg_user ORDER BY tg_reg_time DESC");
+$_result=_query("SELECT tg_username,tg_sex,tg_face FROM tg_user ORDER BY tg_reg_time DESC LIMIT $_pagenum,$_pagesize;");
 
 ?>
 <!DOCTYPE html>
@@ -48,6 +55,17 @@ require ROOT_PATH.'includes/header.inc.php';
         <dd class="flower">给她送花</dd>
     </dl>
     <?php }?>
+    <div id="page_num">
+        <ul>
+            <?php for ($i=0;$i<$_pagheabsolute;$i++) {
+                if ($_page==($i+1)){
+                    echo '<li><a href="blog.php?page='.($i+1).'" class="selected">'.($i+1).'</a></li>';
+                }else{
+                    echo '<li><a href="blog.php?page='.($i+1).'">'.($i+1).'</a></li>';
+                }
+            } ?>
+        </ul>
+    </div>
 </div>
 
 
