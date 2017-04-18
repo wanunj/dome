@@ -102,6 +102,15 @@ function _close(){
     }
 }
 
+/**
+ * _num_rows() 结果集
+ * @param $_result
+ * @return int
+ */
+function _num_rows($_result){
+    return mysql_num_rows($_result);
+}
+
 
 
 

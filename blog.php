@@ -19,12 +19,34 @@ define('IN_TG',true);
 require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
 //分页模块
-$_page = $_GET['page'];
+if (isset($_GET['page'])){
+    $_page = $_GET['page'];
+    if (empty($_page)||$_page<0||!is_numeric($_page)){
+        $_page=1;
+    }else{
+        $_page=intval($_page);
+    }
+}else{
+    $_page=1;
+}
+
 $_pagesize = 10;
+
+//首先要得到所有的数据总和
+$_num=_num_rows(_query("SELECT tg_id FROM tg_user"));
+
+if ($_num==0){
+    $_pagheabsolute=1;
+}else{
+    $_pagheabsolute=ceil($_num/$_pagesize);
+}
+
+if ($_page>$_pagheabsolute){
+    $_page=$_pagheabsolute;
+}
+
 $_pagenum = ($_page - 1) * $_pagesize;
-//首页要得到所有的数据总和
-$_num=mysql_num_rows(_query("SELECT tg_id FROM tg_user"));
-$_pagheabsolute=ceil($_num/$_pagesize);
+
 //从数据库提取数据获取结果集
 $_result=_query("SELECT tg_username,tg_sex,tg_face FROM tg_user ORDER BY tg_reg_time DESC LIMIT $_pagenum,$_pagesize;");
 
