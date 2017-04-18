@@ -79,6 +79,20 @@ h2{
     font-weight: bold;
     color: #ffffff;
 }
+#page_text{
+    height: 20px;
+    clear: both;
+    padding: 10px 0;
+}
+#page_text ul{
+    text-align: center;
+}
+#page_text ul li{
+    display: inline;
+}
+#page_text ul li a{
+    color: #333333;
+}
 #footer{
     width: 960px;
     height: 40px;

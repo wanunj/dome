@@ -30,7 +30,7 @@ if (isset($_GET['page'])){
     $_page=1;
 }
 
-$_pagesize = 10;
+$_pagesize = 5;
 
 //首先要得到所有的数据总和
 $_num=_num_rows(_query("SELECT tg_id FROM tg_user"));
@@ -86,6 +86,28 @@ require ROOT_PATH.'includes/header.inc.php';
                     echo '<li><a href="blog.php?page='.($i+1).'">'.($i+1).'</a></li>';
                 }
             } ?>
+        </ul>
+    </div>
+    <div id="page_text">
+        <ul>
+            <li><?php echo $_page?>/<?php echo $_pagheabsolute?>页 | </li>
+            <li>共有<strong><?php echo $_num?></strong>个会员 | </li>
+            <?php
+                if ($_page==1){
+                    echo '<li>首页 | </li>';
+                    echo '<li>上一页 | </li>';
+                }else{
+                    echo '<li><a href="'.SCRIPT.'.php">首页</a> | </li>';
+                    echo '<li><a href="'.SCRIPT.'.php?page='.($_page-1).'">上一页</a> | </li>';
+                }
+                if ($_page==$_pagheabsolute){
+                    echo '<li>下一页 | </li>';
+                    echo '<li>尾页 | </li>';
+                }else{
+                    echo '<li><a href="'.SCRIPT.'.php?page='.($_page+1).'">下一页</a> | </li>';
+                    echo '<li><a href="'.SCRIPT.'.php?page='.$_pagheabsolute.'">尾页</a> | </li>';
+                }
+            ?>
         </ul>
     </div>
 </div>
