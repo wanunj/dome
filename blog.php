@@ -19,34 +19,7 @@ define('IN_TG',true);
 require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
 //分页模块
-if (isset($_GET['page'])){
-    $_page = $_GET['page'];
-    if (empty($_page)||$_page<0||!is_numeric($_page)){
-        $_page=1;
-    }else{
-        $_page=intval($_page);
-    }
-}else{
-    $_page=1;
-}
-
-$_pagesize = 5;
-
-//首先要得到所有的数据总和
-$_num=_num_rows(_query("SELECT tg_id FROM tg_user"));
-
-if ($_num==0){
-    $_pagheabsolute=1;
-}else{
-    $_pagheabsolute=ceil($_num/$_pagesize);
-}
-
-if ($_page>$_pagheabsolute){
-    $_page=$_pagheabsolute;
-}
-
-$_pagenum = ($_page - 1) * $_pagesize;
-
+_page("SELECT tg_id FROM tg_user",4);  //第一个参数获取总条数，第二个参数指定每页多少条
 //从数据库提取数据获取结果集
 $_result=_query("SELECT tg_username,tg_sex,tg_face FROM tg_user ORDER BY tg_reg_time DESC LIMIT $_pagenum,$_pagesize;");
 
@@ -77,39 +50,12 @@ require ROOT_PATH.'includes/header.inc.php';
         <dd class="flower">给她送花</dd>
     </dl>
     <?php }?>
-    <div id="page_num">
-        <ul>
-            <?php for ($i=0;$i<$_pagheabsolute;$i++) {
-                if ($_page==($i+1)){
-                    echo '<li><a href="blog.php?page='.($i+1).'" class="selected">'.($i+1).'</a></li>';
-                }else{
-                    echo '<li><a href="blog.php?page='.($i+1).'">'.($i+1).'</a></li>';
-                }
-            } ?>
-        </ul>
-    </div>
-    <div id="page_text">
-        <ul>
-            <li><?php echo $_page?>/<?php echo $_pagheabsolute?>页 | </li>
-            <li>共有<strong><?php echo $_num?></strong>个会员 | </li>
-            <?php
-                if ($_page==1){
-                    echo '<li>首页 | </li>';
-                    echo '<li>上一页 | </li>';
-                }else{
-                    echo '<li><a href="'.SCRIPT.'.php">首页</a> | </li>';
-                    echo '<li><a href="'.SCRIPT.'.php?page='.($_page-1).'">上一页</a> | </li>';
-                }
-                if ($_page==$_pagheabsolute){
-                    echo '<li>下一页 | </li>';
-                    echo '<li>尾页 | </li>';
-                }else{
-                    echo '<li><a href="'.SCRIPT.'.php?page='.($_page+1).'">下一页</a> | </li>';
-                    echo '<li><a href="'.SCRIPT.'.php?page='.$_pagheabsolute.'">尾页</a> | </li>';
-                }
-            ?>
-        </ul>
-    </div>
+
+    <?php
+        //_paging()函数调用分页，1|2,1表示数字分页，2表示文本分页
+        _paging(2);
+    ?>
+
 </div>
 
 

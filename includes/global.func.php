@@ -158,9 +158,107 @@ function _login_state(){
     }
  }
 
+/**
+ *_page()  分页
+ * @param $_sql
+ * @param $_size
+ */
+function _page($_sql,$_size) {
+    //将里面的所有变量取出来，外部可以访问
+    global $_page,$_pagesize,$_pagenum,$_pageabsolute,$_num;
+    if (isset($_GET['page'])) {
+        $_page = $_GET['page'];
+        if (empty($_page) || $_page < 0 || !is_numeric($_page)) {
+            $_page = 1;
+        } else {
+            $_page = intval($_page);
+        }
+    } else {
+        $_page = 1;
+    }
+    $_pagesize = $_size;
+    $_num = _num_rows(_query($_sql));
+    if ($_num == 0) {
+        $_pageabsolute = 1;
+    } else {
+        $_pageabsolute = ceil($_num / $_pagesize);
+    }
+    if ($_page > $_pageabsolute) {
+        $_page = $_pageabsolute;
+    }
+    $_pagenum = ($_page - 1) * $_pagesize;
+}
+
+/**
+ * _paging分页函数
+ * @param $_type
+ * @return 返回分页
+ */
+function _paging($_type) {
+    global $_page,$_pageabsolute,$_num;
+    if ($_type == 1) {
+        echo '<div id="page_num">';
+        echo '<ul>';
+        for ($i=0;$i<$_pageabsolute;$i++) {
+            if ($_page == ($i+1)) {
+                echo '<li><a href="blog.php?page='.($i+1).'" class="selected">'.($i+1).'</a></li>';
+            } else {
+                echo '<li><a href="blog.php?page='.($i+1).'">'.($i+1).'</a></li>';
+            }
+        }
+        echo '</ul>';
+        echo '</div>';
+    } elseif ($_type == 2) {
+        echo '<div id="page_text">';
+        echo '<ul>';
+        echo '<li>'.$_page.'/'.$_pageabsolute.'页 | </li>';
+        echo '<li>共有<strong>'.$_num.'</strong>个会员 | </li>';
+        if ($_page == 1) {
+            echo '<li>首页 | </li>';
+            echo '<li>上一页 | </li>';
+        } else {
+            echo '<li><a href="'.SCRIPT.'.php">首页</a> | </li>';
+            echo '<li><a href="'.SCRIPT.'.php?page='.($_page-1).'">上一页</a> | </li>';
+        }
+        if ($_page == $_pageabsolute) {
+            echo '<li>下一页 | </li>';
+            echo '<li>尾页</li>';
+        } else {
+            echo '<li><a href="'.SCRIPT.'.php?page='.($_page+1).'">下一页</a> | </li>';
+            echo '<li><a href="'.SCRIPT.'.php?page='.$_pageabsolute.'">尾页</a></li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+    }
+
+
+
+ }
 
 
 
 
 
-?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
