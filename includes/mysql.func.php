@@ -111,6 +111,15 @@ function _num_rows($_result){
     return mysql_num_rows($_result);
 }
 
+/**
+ * _free_result()  销毁结果集
+ * @param $_result
+ * @return bool
+ */
+function _free_result($_result){
+    return mysql_free_result($_result);
+}
+
 
 
 

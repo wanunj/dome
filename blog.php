@@ -40,10 +40,16 @@ require ROOT_PATH.'includes/header.inc.php';
 
 <div id="blog">
     <h2>博友列表</h2>
-    <?php while (!!$_rows=_fetch_array_list($_result)){?>
+    <?php while (!!$_rows=_fetch_array_list($_result)){
+        $_html=array();
+        $_html['username']=$_rows['tg_username'];
+        $_html['face']=$_rows['tg_face'];
+        $_html['sex']=$_rows['tg_sex'];
+        $_html=_html($_html);
+        ?>
     <dl>
-        <dd class="user"><?php echo $_rows['tg_username']?>(<?php echo $_rows['tg_sex']?>)</dd>
-        <dt><img src="<?php echo $_rows['tg_face']?>" alt="哈哈"></dt>
+        <dd class="user"><?php echo $_html['username']?>(<?php echo $_html['sex']?>)</dd>
+        <dt><img src="<?php echo $_html['face']?>" alt="哈哈"></dt>
         <dd class="message">发消息</dd>
         <dd class="friend">加为好友</dd>
         <dd class="guest">写留言</dd>
@@ -52,8 +58,9 @@ require ROOT_PATH.'includes/header.inc.php';
     <?php }?>
 
     <?php
-        //_paging()函数调用分页，1|2,1表示数字分页，2表示文本分页
-        _paging(2);
+    _free_result($_result);
+    //_paging()函数调用分页，1|2,1表示数字分页，2表示文本分页
+    _paging(2);
     ?>
 
 </div>

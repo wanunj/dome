@@ -230,10 +230,23 @@ function _paging($_type) {
         echo '</ul>';
         echo '</div>';
     }
-
-
-
  }
+
+/**
+ * _html() 对字符串进行HTML过滤显示
+ * @param $_string
+ * @return array|string
+ */
+function _html($_string){
+    if (is_array($_string)){
+        foreach ($_string as $_key=>$_value){
+            $_string[$_key]=htmlentities($_value);
+        }
+    }else{
+        $_string=htmlentities($_string);
+    }
+    return $_string;
+}
 
 
 
