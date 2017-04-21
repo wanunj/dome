@@ -74,7 +74,7 @@ require ROOT_PATH.'includes/header.inc.php';
                                             <input type="radio" name="time" value="3""> 一月
             </dd>
             <dd>验&nbsp;&nbsp;证&nbsp;&nbsp;码：<input type="text" name="code" class="text code"><img src="code.php" id="code" /></dd>
-            <dd><input type="submit" value="登录" class="button"> <input type="button" value="注册" id="location" class="button location"></dd>
+            <dd><input type="submit" value="登录" class="button"><input type="button" value="注册" id="location" class="button location"></dd>
         </dl>
     </form>
 </div>

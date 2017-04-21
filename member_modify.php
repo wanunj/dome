@@ -20,7 +20,56 @@ require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，�
 
 //修改资料
 if ($_GET['action']=='modify'){
-    echo '修改';
+    _check_code(isset($_POST['code']),isset($_SESSION['code']));
+    include ROOT_PATH.'includes/register.func.php';
+    $_clean=array();
+    $_html['password']=_check_modify_password($_POST['password'],6);
+    $_clean['sex']=_check_sex($_POST['sex']);
+    $_clean['face']=_check_face($_POST['face']);
+    $_clean['email']=_check_email($_POST['email'],6,40);
+    $_clean['qq']=_check_qq($_POST['qq']);
+    $_clean['url']=_check_url($_POST['url'],40);
+    //修改资料
+    if (!empty($_clean['password'])){
+        _query(<<<TAG
+                        UPDATE tg_user SET 
+                                    tg_sex='{$_clean['sex']}',
+                                    tg_face='{$_clean['face']}',
+                                    tg_email='{$_clean['email']}',
+                                    tg_qq='{$_clean['qq']}',
+                                    tg_url='{$_clean['url']}'
+                                WHERE
+                                    tg_username='{$_COOKIE['username']}'
+TAG
+        );
+    }else{
+        _query(<<<TAG
+                        UPDATE tg_user SET 
+                                    tg_password='{$_clean['password']}',
+                                    tg_sex='{$_clean['sex']}',
+                                    tg_face='{$_clean['face']}',
+                                    tg_email='{$_clean['email']}',
+                                    tg_qq='{$_clean['qq']}',
+                                    tg_url='{$_clean['url']}'
+                                WHERE
+                                    tg_username='{$_COOKIE['username']}'
+TAG
+);
+    }
+    //判断是否修改成功
+    if(_affected_rows()==1){
+        //关闭数据库
+        _close();
+        //跳转
+        _session_destroy();
+        _location('修改成功！','member.php');
+    }else{
+        //关闭数据库
+        _close();
+        //跳转
+        _session_destroy();
+        _location('修改失败！','member_modify.php');
+    }
 }
 
 //是否正常登陆
@@ -84,9 +133,10 @@ require ROOT_PATH.'includes/header.inc.php';
         <form action="?action=modify" method="post">
             <dl>
                 <dd>用 户 名：<?php echo $_html['username']?></dd>
+                <dd>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" class="text" name="password">(留空则不修改)</dd>
                 <dd>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<?php echo $_html['sex_html']?></dd>
                 <dd>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像：<?php echo $_html['face_html']?></dd>
-                <dd>电子邮件：<input type="text" class="text" name="eamil" value="<?php echo $_html['email']?>"></dd>
+                <dd>电子邮件：<input type="text" class="text" name="email" value="<?php echo $_html['email']?>"></dd>
                 <dd>主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页：<input type="text" class="text" name="url" value="<?php echo $_html['url']?>"></dd>
                 <dd>Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q：<input type="text" class="text" name="qq" value="<?php echo $_html['qq']?>"></dd>
                 <dd>验&nbsp;&nbsp;证&nbsp;&nbsp;码：<input type="text" name="code" class="text code"><img src="code.php" id="code" /></dd>

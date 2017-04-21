@@ -94,6 +94,23 @@ function _check_password($_first_pass,$_end_pass,$_min_num){
 }
 
 /**
+ * @param $_string
+ * @param $_min_num
+ * @return mixed
+ */
+function _check_modify_password($_string, $_min_num){
+    //判断密码
+    if (!empty($_string)){
+        if (strlen($_string)<$_min_num){
+            _alert_back('密码不得小于'.$_min_num.'位！');
+        }
+    }else{
+        return null;
+    }
+    return sha1($_string);
+}
+
+/**
 *_check_question()  返回密码提示
 *@access public
 *@param string $_string
@@ -230,4 +247,3 @@ function _check_url($_string,$_max_num){
 
 
 
-?>

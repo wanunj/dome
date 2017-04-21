@@ -32,6 +32,7 @@ window.onload=function () {
             fm.notpassword.focus();
             return false;
         }
+
         //验证码验证
         if (fm.code.value.length!=4){
             alert('验证码必须是4位！');
