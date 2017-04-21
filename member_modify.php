@@ -21,17 +21,20 @@ require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，�
 //修改资料
 if ($_GET['action']=='modify'){
     _check_code(isset($_POST['code']),isset($_SESSION['code']));
-    include ROOT_PATH.'includes/register.func.php';
-    $_clean=array();
-    $_html['password']=_check_modify_password($_POST['password'],6);
-    $_clean['sex']=_check_sex($_POST['sex']);
-    $_clean['face']=_check_face($_POST['face']);
-    $_clean['email']=_check_email($_POST['email'],6,40);
-    $_clean['qq']=_check_qq($_POST['qq']);
-    $_clean['url']=_check_url($_POST['url'],40);
-    //修改资料
-    if (!empty($_clean['password'])){
-        _query(<<<TAG
+    if (!!$_rows=_fetch_array("SELECT tg_uniqid FROM tg_user WHERE tg_username='{$_COOKIE['username']}'LIMIT 1")){
+        //为了防止COOKIE伪造，比对唯一标识符
+        _uniqid($_rows['tg_uniqid'],$_COOKIE['uniqid']);
+        include ROOT_PATH.'includes/register.func.php';
+        $_clean=array();
+        $_html['password']=_check_modify_password($_POST['password'],6);
+        $_clean['sex']=_check_sex($_POST['sex']);
+        $_clean['face']=_check_face($_POST['face']);
+        $_clean['email']=_check_email($_POST['email'],6,40);
+        $_clean['qq']=_check_qq($_POST['qq']);
+        $_clean['url']=_check_url($_POST['url'],40);
+        //修改资料
+        if (!empty($_clean['password'])){
+            _query(<<<TAG
                         UPDATE tg_user SET 
                                     tg_sex='{$_clean['sex']}',
                                     tg_face='{$_clean['face']}',
@@ -41,9 +44,9 @@ if ($_GET['action']=='modify'){
                                 WHERE
                                     tg_username='{$_COOKIE['username']}'
 TAG
-        );
-    }else{
-        _query(<<<TAG
+            );
+        }else{
+            _query(<<<TAG
                         UPDATE tg_user SET 
                                     tg_password='{$_clean['password']}',
                                     tg_sex='{$_clean['sex']}',
@@ -54,7 +57,8 @@ TAG
                                 WHERE
                                     tg_username='{$_COOKIE['username']}'
 TAG
-);
+            );
+        }
     }
     //判断是否修改成功
     if(_affected_rows()==1){
@@ -68,7 +72,7 @@ TAG
         _close();
         //跳转
         _session_destroy();
-        _location('修改失败！','member_modify.php');
+        _location('没有数据被修改！','member_modify.php');
     }
 }
 

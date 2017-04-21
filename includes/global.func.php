@@ -248,7 +248,17 @@ function _html($_string){
     return $_string;
 }
 
-
+/**
+ * _uniqid() 判断唯一标识符是否异常
+ * @param $_mysql_uniqid
+ * @param $_cookie_uniqid
+ */
+function _uniqid($_mysql_uniqid, $_cookie_uniqid){
+    //为了防止COOKIE伪造，比对唯一标识符
+    if ($_mysql_uniqid!=$_cookie_uniqid){
+        _alert_back('唯一标识符异常！');
+    }
+}
 
 
 
