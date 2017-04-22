@@ -1,0 +1,19 @@
+
+#member_main table{
+    width:90%;
+    margin: 10px auto;
+    text-align: center;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+#member_main table th,#member_main table td{
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid #cccccc;
+}
+#member_main table td a{
+    color: #333333;
+}
+#member_main table td a:hover{
+    text-decoration: underline;
+}

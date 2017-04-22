@@ -108,3 +108,57 @@ h2{
 #footer p span{
     color: #06f;
 }
+
+#member{
+    width: auto;
+    height: 600px;
+    border: 2px solid #ccc;
+    font-size: 12px;
+}
+#member h2{
+    text-indent: 0;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+#member_sidebar{
+    width: 300px;
+    height: 550px;
+    margin: 15px;
+    border: 1px dashed #999;
+    float: left;
+}
+#member_sidebar dl{
+    width: 250px;
+    margin: 15px auto;
+}
+#member_sidebar dl dt{
+    height: 40px;
+    line-height: 40px;
+    background: #999999;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+#member_sidebar dl dd{
+    height: 40px;
+    line-height: 40px;
+    background: #eee;
+    font-weight: bold;
+    text-align: center;
+}
+#member_sidebar dl a{
+    display: block;
+    color: #333333;
+}
+#member_sidebar dl a:hover{
+    background: #cccccc;
+}
+#member_main{
+    width: 590px;
+    height: 500px;
+    margin: 15px;
+    border: 1px dashed #999;
+    float: right;
+}

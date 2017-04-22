@@ -19,6 +19,7 @@ define('IN_TG',true);
 require dirname(__FILE__).'/includes/common.inc.php';   //转换成硬路径，速度更快
 
 //分页模块
+global $_pagesize,$_pagenum;
 _page("SELECT tg_id FROM tg_user",4);  //第一个参数获取总条数，第二个参数指定每页多少条
 //从数据库提取数据获取结果集
 $_result=_query("SELECT tg_id,tg_username,tg_sex,tg_face FROM tg_user ORDER BY tg_reg_time DESC LIMIT $_pagenum,$_pagesize;");
