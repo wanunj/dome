@@ -128,7 +128,13 @@ function _check_code($_first_code,$_end_code){
 function _mysql_string($_string){
     //get_magic_quotes_gpc() 如果开启状态，那么就不需要转义
     if (!GPC){
-        return mysql_real_escape_string($_string);
+        if (is_array($_string)){
+            foreach ($_string as $_key=>$_value){
+                $_string[$_key]=_mysql_string($_value);
+            }
+        }else{
+            $_string=mysql_real_escape_string($_string);
+        }
     }
     return $_string;
 }
