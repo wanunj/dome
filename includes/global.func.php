@@ -84,6 +84,14 @@ function _alert_back($_info){
     exit();
 }
 
+/**_alert_close()  弹出关闭自己
+ * @param $_info
+ */
+function _alert_close($_info){
+    echo "<script type='text/javascript'>alert('".$_info."');window.close();</script>";
+    exit();
+}
+
 /**
  * @param $_info
  * @param $_url
