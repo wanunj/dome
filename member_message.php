@@ -50,7 +50,7 @@ if ($_GET['action']=='delete'&&isset($_POST['ids'])){
 global $_pagesize,$_pagenum;
 _page("SELECT tg_id FROM tg_message",3);  //第一个参数获取总条数，第二个参数指定每页多少条
 //从数据库提取数据获取结果集
-$_result=_query("SELECT tg_id,tg_fromuser,tg_content,tg_date FROM tg_message ORDER BY tg_date DESC LIMIT $_pagenum,$_pagesize;");
+$_result=_query("SELECT tg_id,tg_state,tg_fromuser,tg_content,tg_date FROM tg_message ORDER BY tg_date DESC LIMIT $_pagenum,$_pagesize;");
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +81,7 @@ require ROOT_PATH.'includes/header.inc.php';
                     <th>发信人</th>
                     <th>短信内容</th>
                     <th>时间</th>
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
                 <?php while (!!$_rows=_fetch_array_list($_result)){
@@ -89,18 +90,28 @@ require ROOT_PATH.'includes/header.inc.php';
                     $_html['fromuser']=$_rows['tg_fromuser'];
                     $_html['content']=$_rows['tg_content'];
                     $_html['date']=$_rows['tg_date'];
+                    $_html=_html($_html);
+                    if (empty($_rows['tg_state'])){
+                        $_html['state']='<img src="images/noread.gif" alt="未读" title="未读"/>';
+                        $_html['content_html']='<strong>'._title($_html['content']).'</strong>';
+                    }else{
+                        $_html['state']='<img src="images/read.gif" alt="已读" title="已读"/>';
+                        $_html['content_html']=_title($_html['content']);
+                    }
+
                     ?>
                     <tr>
                         <td><?php echo $_html['fromuser']?></td>
-                        <td><a href="member_message_detail.php?id=<?php echo $_html['id']?>" title="<?php echo $_html['content']?>"><?php echo _title($_html['content'])?></a></td>
+                        <td><a href="member_message_detail.php?id=<?php echo $_html['id']?>" title="<?php echo $_html['content']?>"><?php echo $_html['content_html']?></a></td>
                         <td><?php echo $_html['date']?></td>
+                        <td><?php echo $_html['state']?></td>
                         <td><input type="checkbox" name="ids[]" value="<?php echo $_html['id']?>"></td>
                     </tr>
                 <?php }
                 _free_result($_result);
                 ?>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <label for="all">全选 <input type="checkbox" name="chkall" id="all"></label> <input type="submit" value="批量删除">
                     </td>
                 </tr>

@@ -50,6 +50,14 @@ h2{
     color: #f00;
     text-decoration: underline;
 }
+#header .noread{
+    background: url("../../images/noread.gif") no-repeat left center;
+    padding: 0 0 0 18px;
+}
+#header .read{
+    background: url("../../images/meg.gif") no-repeat left center;
+    padding: 0 0 0 18px;
+}
 #page_num{
     height: 20px;
     clear: both;

@@ -43,7 +43,13 @@ _connect();     //连接MMYSQL
 _select_db();   //指定数据库
 _set_names();   //指定字符集
 
-
+//短信提醒
+$_message=_fetch_array("SELECT COUNT(tg_id) AS count FROM tg_message WHERE tg_state=0");
+if (empty($_message['count'])){
+    $GLOBALS['message']='<strong class="noread"><a href="member_message.php">(0)</a></strong>';
+}else{
+    $GLOBALS['message']='<strong class="read"><a href="member_message.php"('.$_message['count'].')</a></strong>';
+}
 
 
 
