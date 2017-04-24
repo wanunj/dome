@@ -36,18 +36,18 @@ if ($_GET['action']=='delete'&&isset($_GET['id'])) {
                 //关闭数据库
                 _close();
                 //跳转
-                _session_destroy();
                 _location('删除成功！','member_message.php');
             }else{
                 //关闭数据库
                 _close();
                 //跳转
-                _session_destroy();
                 _alert_back('删除失败!');
             }
         } else {
-            _alert_back('此短信不存在！');
+            _alert_back('非法登录');
         }
+    }else{
+        _alert_back('此短信不存在！');
     }
 }
 if (isset($_GET['id'])){
